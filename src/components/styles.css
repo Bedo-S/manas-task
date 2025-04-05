@@ -1,3 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .header {
   background: linear-gradient(90deg, #000000, #1a1a1a);
   display: flex;
@@ -882,4 +891,15 @@
 
 .nav-link.contact-button:active {
   background-color: #d35400; /* Even darker orange on click */
+}
+
+.footer-contact a {
+  color: white; 
+  text-decoration: none; 
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #f39c12; 
 }
