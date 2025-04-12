@@ -4,7 +4,13 @@ html, body {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212; 
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .header {
@@ -19,6 +25,11 @@ html, body {
   z-index: 1000;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.header:hover {
+  background-color: #1a1a1a;
 }
 
 .header-logo img {
@@ -112,12 +123,13 @@ html, body {
   padding: 20px;
 }
 
-.banner-content {
+.banner-content {  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .banner-logo {
@@ -150,7 +162,6 @@ html, body {
   transform: translateY(20px); 
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -219,7 +230,7 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: black;
+  background-color: #1a1a1a;
   color: white;
   padding: 50px 20px;
   box-sizing: border-box;
@@ -245,7 +256,8 @@ html, body {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 50px;
+  gap: 40px;
+  width: 100%;
 }
 
 .about-content {
@@ -255,7 +267,7 @@ html, body {
   align-items: flex-start;
   width: 50%;
   gap: 15px;
-  padding-right: 20px; /* Added padding to the right for spacing */
+  padding-right: 20px; 
 }
 
 
@@ -271,12 +283,13 @@ html, body {
 
 .about-content-body {
   padding: 20px;
-  background-color: #1a1a1a;
+  background-color: #2a2a2a;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: #dcdcdc;
   font-family: 'Poppins', sans-serif;
   line-height: 1.8;
+  border: 1px solid #f39c12;
 }
 
 .about-video {
@@ -289,6 +302,9 @@ html, body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  border-radius: 15px;
+  border: 1px solid #f39c12; 
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .about-video iframe {
@@ -384,7 +400,10 @@ html, body {
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  background-color: black;
+  max-width: 90%;
+  max-height: 95%;
+  margin: 0 auto;
+  background-color: #121212;
   color: white;
   gap: 40px;
   box-sizing: border-box;
@@ -395,7 +414,7 @@ html, body {
   display: flex;
   flex-direction: row; 
   align-items: flex-start;
-  gap: 20px;
+  gap: 40px;
   width: 100%;
   max-width: 1200px;
 }
@@ -410,21 +429,26 @@ html, body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
-  border: 4px solid white;
+  border: 2px solid #f39c12;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-image-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.5); 
 }
 
 .gallery-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; 
+  object-fit: cover; 
 }
 
 .gallery-description {
-  width: 30%; 
-  height: auto; 
-  max-height: 300px; 
+  width: 70%; /* Matches the width of the gallery-image-wrapper */
+  aspect-ratio: 16 / 9; /* Matches the aspect ratio of the gallery-image-wrapper */
   padding: 20px;
-  background: #1a1a1a;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
   font-family: 'Poppins', sans-serif;
@@ -432,7 +456,17 @@ html, body {
   color: #dcdcdc;
   line-height: 1.6;
   text-align: left;
-  overflow-y: auto; 
+  overflow-y: auto;
+  border: 1px solid #f39c12;
+}
+
+.gallery-description-heading {
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #f39c12; 
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .gallery-thumbnails {
@@ -442,26 +476,38 @@ html, body {
   gap: 15px;
 }
 
-.thumbnail {
+.thumbnail-wrapper {
   width: 100px;
   height: 60px;
-  object-fit: cover;
   border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.thumbnail:hover,
-.thumbnail.active {
+.thumbnail-wrapper:hover {
   border-color: #f39c12;
   transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.5); 
 }
 
+.thumbnail-wrapper.active {
+  border-color: #f39c12;
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.8); 
+}
+
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 @media (max-width: 768px) {
   .gallery-main {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
   }
 
   .gallery-image-wrapper {
@@ -478,7 +524,7 @@ html, body {
     gap: 10px;
   }
 
-  .thumbnail {
+  .thumbnail-wrapper {
     width: 80px;
     height: 50px;
   }
@@ -486,7 +532,7 @@ html, body {
 
 .sponsors-section {
   padding: 100px 20px;
-  background-color: black;
+  background-color: #1a1a1a;
   color: white;
   text-align: center;
 }
@@ -536,6 +582,7 @@ html, body {
   transform: scale(1.15);
   filter: none;
   opacity: 1;
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.8)
 }
 
 @media (max-width: 768px) {
@@ -637,7 +684,7 @@ html, body {
   padding: 50px 20px;
   box-sizing: border-box;
   text-align: center;
-  overflow: hidden; /* Prevent overflow during animations */
+  overflow: hidden; 
 }
 
 .contact-form {
@@ -656,7 +703,7 @@ html, body {
   background-color: #1a1a1a;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  box-sizing: border-box; 
 }
 
 .contact-form label {
@@ -665,12 +712,12 @@ html, body {
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   color: white;
-  text-align: left; /* Align labels to the left */
+  text-align: left; 
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%; /* Ensure inputs take full width of the form */
+  width: 100%; 
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
@@ -678,7 +725,7 @@ html, body {
   background-color: #333;
   color: white;
   font-family: 'Poppins', sans-serif;
-  box-sizing: border-box; /* Include padding in width calculation */
+  box-sizing: border-box;
 }
 
 .contact-form input::placeholder,
@@ -687,7 +734,7 @@ html, body {
 }
 
 .contact-form button {
-  width: 100%; /* Ensure button aligns with inputs */
+  width: 100%; 
   padding: 10px;
   background-color: #f39c12;
   color: white;
@@ -885,12 +932,12 @@ html, body {
 }
 
 .nav-link.contact-button:hover {
-  background-color: #e67e22; /* Darker orange on hover */
-  transform: scale(1.1); /* Slight zoom effect */
+  background-color: #e67e22;
+  transform: scale(1.1);
 }
 
 .nav-link.contact-button:active {
-  background-color: #d35400; /* Even darker orange on click */
+  background-color: #d35400; 
 }
 
 .footer-contact a {
@@ -902,4 +949,86 @@ html, body {
 
 .footer-contact a:hover {
   color: #f39c12; 
+}
+
+.open-modal-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-align: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+
+} 
+
+.close-modal-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-button:hover {
+  background-color: #0056b3;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  text-align: center;
 }
