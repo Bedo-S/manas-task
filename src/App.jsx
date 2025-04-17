@@ -5,6 +5,7 @@ import About from './components/about';
 import Projects from './components/projects';
 import Sponsors from './components/sponsors';
 import Footer from './components/footer';
+import ImageCollage from './components/gallery';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <div><About /></div>
       <div><Projects /></div>
       <div><Sponsors /></div>
+      <div><ImageCollage /></div>
       <div><Footer /></div>
     </div>
   );
